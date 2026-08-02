@@ -72,6 +72,9 @@ Subagentes
   estática de una sola página sin build tools.
 
 Plan ejecutado — Prototipo con Arquitectura Documentada
+Propuesto en orden (documentar antes de programar) y aprobado paso a
+paso antes de ejecutar cada fase — no se escribió código hasta tener
+C4 Nivel 1, Nivel 2 y el ADR ya definidos.
 1. C4 Nivel 1 (Contexto) — `docs/architecture/c4-nivel1-contexto.md`.
    Visitante + landing como único sistema, sin backend ni sistemas
    externos; MCP server excluido por ser tooling de desarrollo.
@@ -91,3 +94,19 @@ Plan ejecutado — Prototipo con Arquitectura Documentada
    `.claude/agents/` para las dos tareas recurrentes que este mismo plan
    requirió: mantener la documentación de arquitectura y verificar los
    cambios de frontend.
+
+Plan aprobado (Claude Code plan mode)
+Además del plan de arriba, este es el registro literal de un plan
+propuesto por Claude Code en modo plan, revisado y aprobado antes de
+ejecutarse (mecanismo `ExitPlanMode` — ningún archivo se toca hasta que
+el plan se aprueba explícitamente).
+
+* Contexto: durante la verificación del dashboard mockeado no había
+  navegador headless disponible (ver `proto-verifier` arriba) — había
+  que abrir el navegador real del usuario para confirmar visualmente.
+* Decisión: registrar el MCP oficial de Playwright para tener un
+  navegador real controlable desde Claude Code.
+* Acción aprobada y ejecutada: `claude mcp add playwright npx
+  @playwright/mcp@latest`.
+* Verificación: `claude mcp list` confirmó `playwright` con estado
+  `✔ Connected`.
