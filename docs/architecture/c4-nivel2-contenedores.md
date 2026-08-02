@@ -7,13 +7,13 @@ componen (páginas, hojas de estilo, capas de scripts). Sigue sin bajar a
 funciones o clases individuales — eso sería Nivel 3 (Componentes), que
 este proyecto no necesita por su tamaño.
 
-Este diagrama documenta la arquitectura **antes** de construir el
-dashboard mockeado — funciona como plano de implementación, no como
-descripción de algo ya terminado. `dashboard-preview.html` y
-`dashboard-preview.js` todavía no existen en el repo; el diagrama es lo
-que guía cómo se van a crear. El ADR con la decisión más importante de
-este prototipo se escribe en el próximo paso, apoyándose en este mismo
-diagrama.
+Este diagrama se escribió **antes** de construir el dashboard mockeado —
+funcionó como plano de implementación, no como descripción hecha
+después de programar. `dashboard-preview.html` y `dashboard-preview.js`
+ya están construidos en el repo y coinciden con lo que se documenta acá.
+La decisión más importante de este prototipo quedó registrada en
+[ADR 0004](../adr/0004-dashboard-mockeado-sin-backend.md), que se apoya
+en este mismo diagrama.
 
 ## Diagrama
 
@@ -25,9 +25,9 @@ C4Container
 
     System_Boundary(landing, "Landing Page DentApp") {
         Container(index, "Página principal", "HTML5 + JS vanilla", "Landing con 6 secciones: hero, features, demo, pricing, faq, footer.")
-        Container(dashboard, "Dashboard mockeado", "HTML5 + JS vanilla", "Maqueta interactiva del producto DentApp, sin datos ni backend reales. Pendiente de construir.")
+        Container(dashboard, "Dashboard mockeado", "HTML5 + JS vanilla", "Maqueta interactiva del producto DentApp, sin datos ni backend reales.")
         Container(styles, "Sistema de estilos", "CSS — custom properties + BEM", "tokens.css + main.css. Design tokens y estilos por sección.")
-        Container(scripts, "Scripts de comportamiento", "JavaScript vanilla", "nav.js, accordion.js, pricing-toggle.js y el futuro dashboard-preview.js.")
+        Container(scripts, "Scripts de comportamiento", "JavaScript vanilla", "nav.js, accordion.js, pricing-toggle.js y dashboard-preview.js.")
     }
 
     Rel(visitante, index, "Navega, lee secciones, hace click en CTAs")
@@ -68,11 +68,11 @@ C4Container
 
 ## Para la presentación
 
-- Este diagrama es el que justifica la próxima decisión de arquitectura
-  (el ADR de "dashboard mockeado sin datos ni backend") — se puede
-  presentar como "primero dibujamos esto, después decidimos y recién
-  ahí programamos", mostrando proceso de arquitectura real y no
-  documentación hecha después de programar.
+- Este diagrama se escribió antes que el ADR y antes del código: primero
+  se dibujó esto, después se decidió (ADR 0004) y recién ahí se programó
+  el prototipo — se puede mostrar comparándolo línea por línea con
+  `src/dashboard-preview.html` para probar que coincide con lo que
+  realmente se construyó, no con lo que se deseaba construir.
 - Si preguntan "¿por qué no está roto en más piezas (Nivel 3)?" → porque
   el tamaño del proyecto no lo justifica; C4 recomienda parar en el
   nivel que siga siendo útil, y acá Nivel 2 ya cubre toda la superficie
