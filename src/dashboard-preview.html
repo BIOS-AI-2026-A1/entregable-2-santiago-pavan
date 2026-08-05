@@ -6,7 +6,7 @@
   <title>DentApp — Vista previa del panel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/main.css">
 </head>
@@ -31,7 +31,14 @@
       </nav>
 
       <section class="dashboard-preview__panel" id="panel-agenda" role="tabpanel" aria-labelledby="tab-agenda">
-        <ul class="dashboard-preview__list" role="list">
+
+        <div class="dashboard-preview__day-tabs" role="tablist" aria-label="Día de la agenda">
+          <button type="button" class="dashboard-preview__day-tab is-active" role="tab" aria-selected="true" data-day="hoy">Hoy</button>
+          <button type="button" class="dashboard-preview__day-tab" role="tab" aria-selected="false" data-day="manana">Mañana</button>
+          <button type="button" class="dashboard-preview__day-tab" role="tab" aria-selected="false" data-day="pasado">Pasado mañana</button>
+        </div>
+
+        <ul class="dashboard-preview__list" role="list" data-day-panel="hoy">
 
           <li class="appointment-row">
             <div class="appointment-row__time">09:00</div>
@@ -74,40 +81,140 @@
           </li>
 
         </ul>
+
+        <ul class="dashboard-preview__list" role="list" data-day-panel="manana" hidden>
+
+          <li class="appointment-row">
+            <div class="appointment-row__time">09:30</div>
+            <div class="appointment-row__info">
+              <p class="appointment-row__patient">Valentina Rodríguez</p>
+              <p class="appointment-row__detail">Blanqueamiento — Dra. González</p>
+            </div>
+            <span class="appointment-row__status appointment-row__status--pending">Pendiente</span>
+            <button type="button" class="appointment-row__action" data-action="toggle-complete">Marcar completado</button>
+          </li>
+
+          <li class="appointment-row">
+            <div class="appointment-row__time">11:00</div>
+            <div class="appointment-row__info">
+              <p class="appointment-row__patient">Bruno Silva</p>
+              <p class="appointment-row__detail">Extracción — Dr. Méndez</p>
+            </div>
+            <span class="appointment-row__status appointment-row__status--pending">Pendiente</span>
+            <button type="button" class="appointment-row__action" data-action="toggle-complete">Marcar completado</button>
+          </li>
+
+          <li class="appointment-row">
+            <div class="appointment-row__time">15:00</div>
+            <div class="appointment-row__info">
+              <p class="appointment-row__patient">Camila Suárez</p>
+              <p class="appointment-row__detail">Control — Dra. González</p>
+            </div>
+            <span class="appointment-row__status appointment-row__status--pending">Pendiente</span>
+            <button type="button" class="appointment-row__action" data-action="toggle-complete">Marcar completado</button>
+          </li>
+
+        </ul>
+
+        <ul class="dashboard-preview__list" role="list" data-day-panel="pasado" hidden>
+
+          <li class="appointment-row">
+            <div class="appointment-row__time">10:00</div>
+            <div class="appointment-row__info">
+              <p class="appointment-row__patient">Agustín Ferreira</p>
+              <p class="appointment-row__detail">Ortodoncia (ajuste) — Dr. Méndez</p>
+            </div>
+            <span class="appointment-row__status appointment-row__status--pending">Pendiente</span>
+            <button type="button" class="appointment-row__action" data-action="toggle-complete">Marcar completado</button>
+          </li>
+
+          <li class="appointment-row">
+            <div class="appointment-row__time">13:30</div>
+            <div class="appointment-row__info">
+              <p class="appointment-row__patient">Sofía Martínez</p>
+              <p class="appointment-row__detail">Limpieza — Dra. González</p>
+            </div>
+            <span class="appointment-row__status appointment-row__status--pending">Pendiente</span>
+            <button type="button" class="appointment-row__action" data-action="toggle-complete">Marcar completado</button>
+          </li>
+
+          <li class="appointment-row">
+            <div class="appointment-row__time">17:00</div>
+            <div class="appointment-row__info">
+              <p class="appointment-row__patient">Nicolás Bentancur</p>
+              <p class="appointment-row__detail">Consulta — Dr. Méndez</p>
+            </div>
+            <span class="appointment-row__status appointment-row__status--pending">Pendiente</span>
+            <button type="button" class="appointment-row__action" data-action="toggle-complete">Marcar completado</button>
+          </li>
+
+        </ul>
       </section>
 
       <section class="dashboard-preview__panel" id="panel-pacientes" role="tabpanel" aria-labelledby="tab-pacientes" hidden>
         <ul class="dashboard-preview__list" role="list">
 
           <li class="patient-row">
-            <div class="patient-row__avatar" aria-hidden="true">MS</div>
-            <div class="patient-row__info">
-              <p class="patient-row__name">Martina Suárez</p>
-              <p class="patient-row__detail">Última visita: 12/06/2026 — Control</p>
+            <button type="button" class="patient-row__trigger" aria-expanded="false" aria-controls="patient-detail-1" id="patient-trigger-1">
+              <div class="patient-row__avatar" aria-hidden="true">MS</div>
+              <div class="patient-row__info">
+                <p class="patient-row__name">Martina Suárez</p>
+                <p class="patient-row__detail">Última visita: 12/06/2026 — Control</p>
+              </div>
+              <svg class="patient-row__chevron" width="18" height="18" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+            </button>
+            <div class="patient-row__expand" id="patient-detail-1" role="region" aria-labelledby="patient-trigger-1">
+              <p><strong>Contacto:</strong> 099 123 456 · martina.suarez@example.com</p>
+              <p><strong>Próximo turno:</strong> Hoy 09:00 — Control</p>
+              <p><strong>Nota:</strong> Alergia a la penicilina.</p>
             </div>
           </li>
 
           <li class="patient-row">
-            <div class="patient-row__avatar" aria-hidden="true">JP</div>
-            <div class="patient-row__info">
-              <p class="patient-row__name">Joaquín Peralta</p>
-              <p class="patient-row__detail">Última visita: 03/05/2026 — Limpieza</p>
+            <button type="button" class="patient-row__trigger" aria-expanded="false" aria-controls="patient-detail-2" id="patient-trigger-2">
+              <div class="patient-row__avatar" aria-hidden="true">JP</div>
+              <div class="patient-row__info">
+                <p class="patient-row__name">Joaquín Peralta</p>
+                <p class="patient-row__detail">Última visita: 03/05/2026 — Limpieza</p>
+              </div>
+              <svg class="patient-row__chevron" width="18" height="18" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+            </button>
+            <div class="patient-row__expand" id="patient-detail-2" role="region" aria-labelledby="patient-trigger-2">
+              <p><strong>Contacto:</strong> 098 234 567 · joaquin.peralta@example.com</p>
+              <p><strong>Próximo turno:</strong> Hoy 10:30 — Limpieza</p>
+              <p><strong>Nota:</strong> Prefiere turnos por la mañana.</p>
             </div>
           </li>
 
           <li class="patient-row">
-            <div class="patient-row__avatar" aria-hidden="true">LF</div>
-            <div class="patient-row__info">
-              <p class="patient-row__name">Lucía Ferreyra</p>
-              <p class="patient-row__detail">Última visita: 20/07/2026 — Endodoncia</p>
+            <button type="button" class="patient-row__trigger" aria-expanded="false" aria-controls="patient-detail-3" id="patient-trigger-3">
+              <div class="patient-row__avatar" aria-hidden="true">LF</div>
+              <div class="patient-row__info">
+                <p class="patient-row__name">Lucía Ferreyra</p>
+                <p class="patient-row__detail">Última visita: 20/07/2026 — Endodoncia</p>
+              </div>
+              <svg class="patient-row__chevron" width="18" height="18" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+            </button>
+            <div class="patient-row__expand" id="patient-detail-3" role="region" aria-labelledby="patient-trigger-3">
+              <p><strong>Contacto:</strong> 097 345 678 · lucia.ferreyra@example.com</p>
+              <p><strong>Próximo turno:</strong> Hoy 12:00 — Endodoncia</p>
+              <p><strong>Nota:</strong> Sesión de endodoncia en dos partes, ya completó la primera.</p>
             </div>
           </li>
 
           <li class="patient-row">
-            <div class="patient-row__avatar" aria-hidden="true">RG</div>
-            <div class="patient-row__info">
-              <p class="patient-row__name">Ramiro Godoy</p>
-              <p class="patient-row__detail">Última visita: 28/04/2026 — Consulta</p>
+            <button type="button" class="patient-row__trigger" aria-expanded="false" aria-controls="patient-detail-4" id="patient-trigger-4">
+              <div class="patient-row__avatar" aria-hidden="true">RG</div>
+              <div class="patient-row__info">
+                <p class="patient-row__name">Ramiro Godoy</p>
+                <p class="patient-row__detail">Última visita: 28/04/2026 — Consulta</p>
+              </div>
+              <svg class="patient-row__chevron" width="18" height="18" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+            </button>
+            <div class="patient-row__expand" id="patient-detail-4" role="region" aria-labelledby="patient-trigger-4">
+              <p><strong>Contacto:</strong> 096 456 789 · ramiro.godoy@example.com</p>
+              <p><strong>Próximo turno:</strong> Hoy 16:15 — Consulta</p>
+              <p><strong>Nota:</strong> Factura pendiente de la última visita.</p>
             </div>
           </li>
 
@@ -118,17 +225,63 @@
         <div class="dashboard-preview__stats">
           <div class="stat-card">
             <p class="stat-card__label">Ingresos del mes</p>
-            <p class="stat-card__value">$1.240.000</p>
+            <p class="stat-card__value">USD 31.200</p>
           </div>
           <div class="stat-card">
-            <p class="stat-card__label">Facturas emitidas</p>
+            <p class="stat-card__label">CFE emitidos</p>
             <p class="stat-card__value">86</p>
           </div>
           <div class="stat-card">
             <p class="stat-card__label">Pendiente de cobro</p>
-            <p class="stat-card__value">$85.000</p>
+            <p class="stat-card__value">USD 2.150</p>
           </div>
         </div>
+
+        <h3 class="dashboard-preview__subheading">Facturas recientes</h3>
+
+        <ul class="dashboard-preview__list" role="list">
+
+          <li class="invoice-row">
+            <div class="invoice-row__info">
+              <p class="invoice-row__patient">Lucía Ferreyra</p>
+              <p class="invoice-row__detail">20/07/2026 — Endodoncia — CFE #00128</p>
+            </div>
+            <span class="invoice-row__amount">USD 1.120</span>
+            <span class="invoice-row__status invoice-row__status--paid">Pagada</span>
+            <button type="button" class="invoice-row__action" data-action="toggle-paid">Marcar pendiente</button>
+          </li>
+
+          <li class="invoice-row">
+            <div class="invoice-row__info">
+              <p class="invoice-row__patient">Ramiro Godoy</p>
+              <p class="invoice-row__detail">16/07/2026 — Consulta — CFE #00127</p>
+            </div>
+            <span class="invoice-row__amount">USD 30</span>
+            <span class="invoice-row__status invoice-row__status--pending">Pendiente</span>
+            <button type="button" class="invoice-row__action" data-action="toggle-paid">Marcar pagada</button>
+          </li>
+
+          <li class="invoice-row">
+            <div class="invoice-row__info">
+              <p class="invoice-row__patient">Martina Suárez</p>
+              <p class="invoice-row__detail">12/06/2026 — Control — CFE #00119</p>
+            </div>
+            <span class="invoice-row__amount">USD 20</span>
+            <span class="invoice-row__status invoice-row__status--paid">Pagada</span>
+            <button type="button" class="invoice-row__action" data-action="toggle-paid">Marcar pendiente</button>
+          </li>
+
+          <li class="invoice-row">
+            <div class="invoice-row__info">
+              <p class="invoice-row__patient">Joaquín Peralta</p>
+              <p class="invoice-row__detail">03/05/2026 — Limpieza — CFE #00104</p>
+            </div>
+            <span class="invoice-row__amount">USD 65</span>
+            <span class="invoice-row__status invoice-row__status--pending">Pendiente</span>
+            <button type="button" class="invoice-row__action" data-action="toggle-paid">Marcar pagada</button>
+          </li>
+
+        </ul>
       </section>
 
       <div class="dashboard-preview__footer">

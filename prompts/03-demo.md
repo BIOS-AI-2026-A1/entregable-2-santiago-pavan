@@ -1,4 +1,9 @@
 # prompt: demo-section
+# ⚠️ OBSOLETO — superado por ADR 0004: la "demo" terminó siendo la
+# página separada `dashboard-preview.html` (dashboard mockeado
+# interactivo), no una sección in-page con video. Esta sección nunca
+# se construyó dentro de `index.html` y no se va a construir. Se deja
+# el archivo como historial, no como spec vigente.
 # cuándo: después de features — muestra el producto en acción
 # variables: $SECTION_TITLE, $BENEFITS, $CTA_LABEL
 

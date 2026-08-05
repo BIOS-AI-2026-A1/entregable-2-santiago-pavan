@@ -15,6 +15,8 @@ No todas las decisiones necesitan un ADR. Se documentan acá solo las que:
 | [0002](0002-bem-y-tokens-separados-de-estilos.md) | BEM + tokens de diseño separados de los estilos | Aceptado |
 | [0003](0003-mcp-server-para-tokens-y-scaffolding.md) | MCP server local para tokens y scaffolding de secciones | Aceptado |
 | [0004](0004-dashboard-mockeado-sin-backend.md) | Dashboard mockeado sin datos ni backend real | Aceptado |
+| [0005](0005-imagenes-autohospedadas-desde-pexels.md) | Imágenes reales autoalojadas desde Pexels | Aceptado |
+| [0006](0006-direccion-visual-elegida.md) | Dirección visual elegida: confianza clínica editorial | Aceptado |
 
 ## Cómo agregar un ADR nuevo
 

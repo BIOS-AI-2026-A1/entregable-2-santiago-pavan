@@ -2,15 +2,20 @@
   --color-primary:       #CC0000;
   --color-primary-dark:  #990000;
   --color-primary-light: #FFE5E5;
+  --color-secondary:     #0F6B5C;
+  --color-secondary-light: #E1EFEC;
   --color-surface:       #FFFFFF;
-  --color-bg:            #F8F8F8;
+  --color-bg:            #FAF6F1;
   --color-text:          #1A1A1A;
   --color-text-muted:    #666666;
-  --color-accent:        #E8E8E8;
+  --color-accent:        #E8E2D8;
+  --color-ink:           #17140F;
+  --color-text-inverse:  #E8E4DE;
   --radius-card:         12px;
   --radius-btn:          4px;
   --shadow-default:      0 2px 8px rgba(0,0,0,0.08);
   --shadow-hover:        0 4px 16px rgba(0,0,0,0.12);
+  --font-display:        'Fraunces', serif;
   --font-heading:        'Inter', sans-serif;
   --font-body:           system-ui, sans-serif;
 }

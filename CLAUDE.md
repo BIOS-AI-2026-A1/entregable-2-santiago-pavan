@@ -19,21 +19,36 @@ Convenciones
   con comentario `/* section: nombre */`.
 * Sin jQuery, sin inline styles, sin `!important`
   salvo override de terceros.
-* Imágenes con alt en español.
-  Elementos interactivos con roles ARIA.
+* Imágenes con alt en español (vacío si es decorativa y el texto
+  adyacente ya la describe). Elementos interactivos con roles ARIA.
+* Dirección visual vigente: ver
+  [ADR 0006](docs/adr/0006-direccion-visual-elegida.md) — `--font-display`
+  (Fraunces) para títulos grandes, `--font-heading` (Inter) para UI,
+  íconos estilo Phosphor duotone (dos `<path>`, uno con `opacity="0.2"`).
+* Imágenes reales en `src/assets/images/`, autoalojadas desde Pexels
+  (nunca vía API en runtime) — ver
+  [ADR 0005](docs/adr/0005-imagenes-autohospedadas-desde-pexels.md).
+  Procedencia de cada una en `src/assets/images/CREDITS.md`.
+* DentApp es un producto **uruguayo** — precios en USD, cumplimiento
+  DGI/CFE (no AFIP), ciudades uruguayas en copy de ejemplo.
 
 Estructura
 src/
-  index.html               # landing — todas las secciones
+  index.html               # landing — hero/features/testimonials/pricing/faq/footer
   dashboard-preview.html   # maqueta mockeada del producto (sin backend)
   styles/
     tokens.css             # :root con custom properties de diseño
     main.css                # estilos por sección (BEM), compartido
   scripts/
     nav.js                 # hamburger menu mobile
-    accordion.js           # lógica del FAQ accordion
+    accordion.js           # accordion del FAQ (un ítem abierto a la vez)
     pricing-toggle.js      # toggle mensual/anual en precios
-    dashboard-preview.js   # tabs + toggle cosmético del dashboard mockeado
+    dashboard-preview.js   # tabs, día de agenda, expand pacientes, facturas
+  assets/
+    images/
+      hero/                # foto del hero
+      testimonials/        # fotos de los 3 testimonios
+      CREDITS.md           # procedencia de cada imagen (Pexels)
 mcp-server/
   index.js                 # herramientas: get_tokens / list_sections / get_section_brief
   package.json
@@ -54,6 +69,15 @@ Comandos
 * `cd mcp-server && npm install && node index.js` — levanta el MCP.
 * `claude mcp add dentapp-design -- node ./mcp-server/index.js`
   — registra el MCP en Claude Code.
+* `claude mcp add playwright npx @playwright/mcp@latest` — registra un
+  navegador real controlable desde Claude Code (usado por `proto-verifier`
+  para confirmación visual, ya no depende de que un humano mire la
+  pantalla).
+* `claude plugin marketplace add anthropics/claude-code` seguido de
+  `claude plugin install frontend-design@claude-code-plugins` — plugin
+  oficial para elegir una dirección visual deliberada y evitar estética
+  genérica de IA. Decisión y dirección elegida en
+  [ADR 0006](docs/adr/0006-direccion-visual-elegida.md).
 
 Subagentes
 * `arch-doc-writer` — crea y mantiene los diagramas C4 (`docs/architecture/`)
@@ -62,11 +86,11 @@ Subagentes
   un diagrama queda desactualizado. Solo toca `docs/`, nunca `src/`.
 * `proto-verifier` — levanta el sitio con un server estático mínimo (Node,
   ya que no hay build tools) y verifica que las páginas/scripts tocados
-  respondan y contengan el markup esperado, antes de abrir el resultado
-  en el navegador para confirmación visual. Se usa después de tocar
-  cualquier HTML/CSS/JS en `src/`. Deja explícito qué se verificó de forma
-  mecánica y qué falta confirmar a simple vista — este entorno no tiene
-  navegador headless.
+  respondan y contengan el markup esperado. Confirmación visual con el
+  MCP de Playwright (navegación, resize mobile/desktop, screenshots y
+  clicks reales) en vez de depender de que un humano mire la pantalla.
+  Se usa después de tocar cualquier HTML/CSS/JS en `src/`. Deja explícito
+  qué se verificó de forma mecánica y qué queda como juicio visual/subjetivo.
 * Se evaluó adoptar el framework externo `superpowers` (metodología TDD +
   orquestación de subagentes) y se descartó: apunta a proyectos con
   desarrollo continuo y ramas de git, sobredimensionado para una landing

@@ -1,8 +1,8 @@
 # prompt: pricing-cards
-# cuándo: después de demo — convierte visitantes en usuarios
+# cuándo: después de testimonials — convierte visitantes en usuarios
 # variables: $PLAN_FREE, $PLAN_PRO, $CURRENCY
 
-Construí la sección de precios de DentApp. Insertala después de `.demo`.
+Construí la sección de precios de DentApp. Insertala después de `.testimonials`.
 Estilos bajo `/* section: pricing */` en `main.css`.
 
 Toggle mensual/anual en JS puro (`src/scripts/pricing-toggle.js`).

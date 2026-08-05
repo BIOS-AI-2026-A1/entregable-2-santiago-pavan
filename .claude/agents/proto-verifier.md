@@ -1,7 +1,7 @@
 ---
 name: proto-verifier
 description: Use this agent to verify that a frontend change to this static site actually works before reporting it as done — serves src/ locally, checks that the touched pages/scripts respond correctly and contain the expected markup, and opens the result in a browser for visual confirmation. Invoke after editing any HTML/CSS/JS under src/. Examples: "verificá que el dashboard mockeado funciona", "probá el sitio antes de dar esto por terminado".
-tools: Bash, Read, Grep
+tools: Bash, Read, Grep, mcp__playwright__browser_navigate, mcp__playwright__browser_snapshot, mcp__playwright__browser_take_screenshot, mcp__playwright__browser_resize, mcp__playwright__browser_click, mcp__playwright__browser_console_messages
 ---
 
 Verificás cambios de frontend en el repo DentApp landing (sitio estático,
@@ -44,10 +44,18 @@ seguir.
 3. Si hay JS de interactividad nuevo, confirmá en el HTML servido que los
    `data-action`, `aria-controls` y demás enganches usados por el script
    coinciden con los `id`/atributos reales del markup.
-4. Este entorno no tiene navegador headless ni herramienta de screenshot
-   — no inventes haber visto un render. Abrí el sitio en el navegador
-   real del usuario para confirmación visual:
-   `Start-Process "http://localhost:8420/index.html"` (PowerShell).
+4. Confirmación visual real, con el MCP de Playwright ya registrado:
+   `mcp__playwright__browser_navigate` a cada página tocada,
+   `mcp__playwright__browser_resize` para probar desktop y mobile, y
+   `mcp__playwright__browser_snapshot` / `browser_take_screenshot` para
+   verificar que lo esperado realmente pintó (no solo que el HTML es
+   válido). Para interactividad (toggles, accordion, tabs) usar
+   `browser_click` y volver a snapshotear. Revisar
+   `browser_console_messages` por errores de JS silenciosos.
+   Si Playwright no está disponible por algún motivo, fallback: abrir el
+   navegador real del usuario con
+   `Start-Process "http://localhost:8420/index.html"` (PowerShell) y
+   pedir confirmación visual humana — dejarlo explícito en el reporte.
 
 ## Al reportar
 

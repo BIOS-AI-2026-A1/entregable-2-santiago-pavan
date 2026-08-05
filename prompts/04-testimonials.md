@@ -1,8 +1,8 @@
 # prompt: testimonials-section
-# cuándo: después de demo — construye confianza antes de mostrar precios
+# cuándo: después de features — construye confianza antes de mostrar precios
 # variables: $SECTION_TITLE, $TESTIMONIALS_LIST
 
-Construí la sección de testimonios de DentApp. Insertala después de `.demo`.
+Construí la sección de testimonios de DentApp. Insertala después de `.features`.
 Estilos bajo `/* section: testimonials */` en `main.css`.
 
 Contenido

@@ -24,7 +24,7 @@ C4Container
     Person(visitante, "Visitante / Prospecto", "Dueño o encargado de una clínica dental pequeña.")
 
     System_Boundary(landing, "Landing Page DentApp") {
-        Container(index, "Página principal", "HTML5 + JS vanilla", "Landing con 6 secciones: hero, features, demo, pricing, faq, footer.")
+        Container(index, "Página principal", "HTML5 + JS vanilla", "Landing con 6 secciones: hero, features, testimonials, pricing, faq, footer.")
         Container(dashboard, "Dashboard mockeado", "HTML5 + JS vanilla", "Maqueta interactiva del producto DentApp, sin datos ni backend reales.")
         Container(styles, "Sistema de estilos", "CSS — custom properties + BEM", "tokens.css + main.css. Design tokens y estilos por sección.")
         Container(scripts, "Scripts de comportamiento", "JavaScript vanilla", "nav.js, accordion.js, pricing-toggle.js y dashboard-preview.js.")
@@ -56,6 +56,12 @@ C4Container
   mismo rol arquitectónico — interactividad de UI sin dependencias — y
   separarlos uno por uno bajaría al detalle de Nivel 3, que no aporta a
   esta vista.
+- **Imágenes reales (`src/assets/images/`) sin contenedor propio.** Son
+  assets estáticos (fotos del hero y de testimonios) servidos por el
+  mismo contenedor "Página principal" — mismo razonamiento que con los
+  scripts: no cumplen un rol arquitectónico distinto al del HTML que las
+  referencia, así que separarlas en un contenedor aparte bajaría al
+  detalle de Nivel 3 sin aportar a esta vista.
 - **Sin contenedor de backend/API/base de datos.** Coherente con el
   Nivel 1: el sitio es estático de punta a punta
   ([ADR 0001](../adr/0001-stack-vanilla-sin-build-tools.md)). El

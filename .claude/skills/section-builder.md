@@ -16,7 +16,10 @@ sin preguntas de seguimiento.
 Playbook
 
 1. Leé `CLAUDE.md` en la raíz para las convenciones vigentes.
-2. Leé `src/styles/tokens.css` para los custom properties disponibles.
+2. Leé `src/styles/tokens.css` para los custom properties disponibles y
+   `docs/adr/0006-direccion-visual-elegida.md` para la dirección visual
+   vigente (tipografía display, iconografía, tratamiento fotográfico) —
+   toda sección nueva tiene que seguirla, no inventar una propia.
 3. Verificá qué secciones ya existen en `src/index.html`
    para no duplicar IDs ni anclas.
 4. Construí la sección:
@@ -26,7 +29,8 @@ Playbook
    * Comentario en inglés al inicio del bloque CSS.
 5. Insertá el HTML en `src/index.html` en la posición correcta
    según el orden de secciones del CLAUDE.md.
-6. Agregá el bloque CSS al final de `src/main.css`
+6. Agregá el bloque CSS al final de `src/styles/main.css`
+   (antes del bloque `@media` mobile consolidado, no después)
    con el comentario `/* section: nombre */`.
 7. Si la sección requiere JS, creá `src/scripts/nombre.js`
    e importalo en el HTML.
